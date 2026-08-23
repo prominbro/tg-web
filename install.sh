@@ -115,7 +115,7 @@ ok "Зависимости установлены"
 # ─── Go check ───────────────────────────────────────────────────────────
 if ! command -v go &>/dev/null; then
   info "Устанавливаю Go..."
-  GO_VER="1.22.5"
+  GO_VER="1.23.1"
   curl -sL "https://go.dev/dl/go${GO_VER}.linux-amd64.tar.gz" | tar -C /usr/local -xzf -
   echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/profile.d/go.sh
   export PATH=$PATH:/usr/local/go/bin
