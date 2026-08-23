@@ -10,7 +10,7 @@ info() { echo -e "${C}[i]${D} $*"; }
 ask()  { echo -e "${W}$1${D}"; }
 
 # ─── Repo URL (change to your fork) ─────────────────────────────────────
-REPO_URL="${TPROXY_REPO:-https://github.com/user/tproxy-deploy}"
+REPO_URL="${TPROXY_REPO:-https://github.com/prominbro/tg-web}"
 
 # ─── Detect source ──────────────────────────────────────────────────────
 # If sites/ directory exists next to this script — we're in a cloned repo.
