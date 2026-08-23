@@ -7,20 +7,20 @@
 ### Через curl (рекомендуется)
 
 ```bash
-sudo bash <(curl -s https://raw.githubusercontent.com/user/tproxy-deploy/main/install.sh)
+sudo bash <(curl -s https://raw.githubusercontent.com/prominbro/tg-web/main/install.sh)
 ```
 
 ### Через wget
 
 ```bash
-sudo bash <(wget -qO- https://raw.githubusercontent.com/user/tproxy-deploy/main/install.sh)
+sudo bash <(wget -qO- https://raw.githubusercontent.com/prominbro/tg-web/main/install.sh)
 ```
 
 ### Через git clone
 
 ```bash
-git clone https://github.com/user/tproxy-deploy.git
-cd tproxy-deploy
+git clone https://github.com/prominbro/tg-web.git
+cd tg-web
 sudo bash install.sh
 ```
 
@@ -94,7 +94,7 @@ tproxy_bytes_down_total 789012    # скачано сервером
 
 ```bash
 # Правишь файлы в sites/имя-сайта/
-cp -r ~/tproxy-deploy/sites/имя-сайта/. /srv/tproxy-site/
+cp -r ~/tg-web/sites/имя-сайта/. /srv/tproxy-site/
 systemctl restart tproxy-server
 ```
 
@@ -115,7 +115,7 @@ systemctl restart tproxy-firewall mtproxy tproxy-server
 ## Структура проекта
 
 ```
-tproxy-deploy/
+tg-web/
 ├── install.sh              # Интерактивный автоинсталлятор
 ├── README.md
 └── sites/
