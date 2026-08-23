@@ -137,17 +137,20 @@ fi
 ok "Репозиторий готов"
 
 # ─── Build relay ────────────────────────────────────────────────────────
-info "Собираю tproxy-server..."
+info "Собираю tproxy-server (это займёт 1-3 минуты)..."
 cd "$WORKDIR/tproxy-server"
-go test ./... -quiet 2>/dev/null
-go build -trimpath -o tproxy-server ./cmd/tproxy-server
+echo -ne "${C}  → тесты...${D}"
+go test ./... -quiet 2>/dev/null && echo -e " ${G}✓${D}" || echo -e " ${Y}⚠${D}"
+echo -ne "${C}  → сборка бинарника...${D}"
+go build -trimpath -o tproxy-server ./cmd/tproxy-server && echo -e " ${G}✓${D}" || fail "Ошибка сборки"
 install -m 0755 tproxy-server /usr/local/bin/tproxy-server
 ok "Релей собран и установлен"
 
 # ─── Build MTProxy ──────────────────────────────────────────────────────
-info "Собираю официальный MTProxy..."
+info "Собираю официальный MTProxy (это займёт 2-5 минут)..."
 cd "$WORKDIR/tproxy-server"
-bash deploy/install-mtproxy.sh 2>&1 | tail -1
+echo -ne "${C}  → компиляция...${D}"
+bash deploy/install-mtproxy.sh 2>&1 | tail -1 && echo -e " ${G}✓${D}" || fail "Ошибка сборки MTProxy"
 ok "MTProxy собран"
 
 # ─── Generate secrets ───────────────────────────────────────────────────
