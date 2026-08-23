@@ -140,7 +140,7 @@ ok "Репозиторий готов"
 info "Собираю tproxy-server (это займёт 1-3 минуты)..."
 cd "$WORKDIR/tproxy-server"
 echo -ne "${C}  → тесты...${D}"
-go test ./... -quiet 2>/dev/null && echo -e " ${G}✓${D}" || echo -e " ${Y}⚠${D}"
+go test ./... 2>/dev/null && echo -e " ${G}✓${D}" || echo -e " ${Y}⚠${D}"
 echo -ne "${C}  → сборка бинарника...${D}"
 go build -trimpath -o tproxy-server ./cmd/tproxy-server && echo -e " ${G}✓${D}" || fail "Ошибка сборки"
 install -m 0755 tproxy-server /usr/local/bin/tproxy-server
@@ -325,12 +325,14 @@ ok "Сайт скопирован в /srv/tproxy-site"
 info "Запускаю сервисы..."
 systemctl daemon-reload
 systemctl enable --now tproxy-firewall.service mtproxy.service tproxy-server.service refresh-mtproxy-config.timer 2>/dev/null
-sleep 3
+sleep 5
 
-if systemctl is-active --quiet tproxy-server && systemctl is-active --quiet mtproxy; then
+if systemctl is-active --quiet tproxy-server; then
   ok "Сервисы запущены"
 else
-  fail "Ошибка запуска сервисов. Проверь: journalctl -u tproxy-server -n 20"
+  warn "Проверю логи..."
+  journalctl -u tproxy-server -n 5 --no-pager
+  fail "Ошибка запуска. Проверь: journalctl -u tproxy-server -n 20"
 fi
 
 # ─── Nginx vhost ────────────────────────────────────────────────────────
