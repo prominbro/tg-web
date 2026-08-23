@@ -4,16 +4,18 @@
 
 ## Быстрый старт
 
-### Через curl (рекомендуется)
+### Через curl
 
 ```bash
-sudo bash <(curl -s https://raw.githubusercontent.com/prominbro/tg-web/main/install.sh)
+curl -sO https://raw.githubusercontent.com/prominbro/tg-web/main/install.sh
+sudo bash install.sh
 ```
 
 ### Через wget
 
 ```bash
-sudo bash <(wget -qO- https://raw.githubusercontent.com/prominbro/tg-web/main/install.sh)
+wget https://raw.githubusercontent.com/prominbro/tg-web/main/install.sh
+sudo bash install.sh
 ```
 
 ### Через git clone
@@ -69,13 +71,15 @@ sudo bash install.sh
 ### Через curl
 
 ```bash
-sudo bash <(curl -s https://raw.githubusercontent.com/prominbro/tg-web/main/uninstall.sh)
+curl -sO https://raw.githubusercontent.com/prominbro/tg-web/main/uninstall.sh
+sudo bash uninstall.sh
 ```
 
 ### Через wget
 
 ```bash
-sudo bash <(wget -qO- https://raw.githubusercontent.com/prominbro/tg-web/main/uninstall.sh)
+wget https://raw.githubusercontent.com/prominbro/tg-web/main/uninstall.sh
+sudo bash uninstall.sh
 ```
 
 ### Через git clone
@@ -90,13 +94,13 @@ sudo bash uninstall.sh
 ### Клиент (Telegram Desktop)
 
 ```
-Хост:   ваш-домен.зона
+Хост:   ваш-домен.com
 Secret: <секрет из вывода скрипта>
 ```
 
 Или по ссылке:
 ```
-https://t.me/webproxy?server=ваш-домен.зона&secret=<секрет>
+https://t.me/webproxy?server=ваш-домен.com&secret=<секрет>
 ```
 
 ### Метрики трафика
