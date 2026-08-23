@@ -1,4 +1,4 @@
-# tproxy-deploy
+# tg-web
 
 Автоинсталлятор WEB-прокси для Telegram с красивыми сайтами.
 
@@ -64,6 +64,27 @@ sudo bash install.sh
 - **Порты:** 80, 443 открыты
 - **DNS:** A-запись домена → IP сервера
 
+## Удаление
+
+### Через curl
+
+```bash
+sudo bash <(curl -s https://raw.githubusercontent.com/prominbro/tg-web/main/uninstall.sh)
+```
+
+### Через wget
+
+```bash
+sudo bash <(wget -qO- https://raw.githubusercontent.com/prominbro/tg-web/main/uninstall.sh)
+```
+
+### Через git clone
+
+```bash
+cd tg-web
+sudo bash uninstall.sh
+```
+
 ## После установки
 
 ### Клиент (Telegram Desktop)
@@ -75,7 +96,7 @@ Secret: <секрет из вывода скрипта>
 
 Или по ссылке:
 ```
-https://t.me/webproxy?server=ваш-домен.com&secret=<секрет>
+https://t.me/webproxy?server=ваш-домен.зона&secret=<секрет>
 ```
 
 ### Метрики трафика
@@ -84,16 +105,9 @@ https://t.me/webproxy?server=ваш-домен.com&secret=<секрет>
 curl http://127.0.0.1:8081/metrics | grep bytes
 ```
 
-Вывод:
-```
-tproxy_bytes_up_total 123456      # загружено клиентами
-tproxy_bytes_down_total 789012    # скачано сервером
-```
-
 ### Обновление сайта
 
 ```bash
-# Правишь файлы в sites/имя-сайта/
 cp -r ~/tg-web/sites/имя-сайта/. /srv/tproxy-site/
 systemctl restart tproxy-server
 ```
@@ -103,7 +117,6 @@ systemctl restart tproxy-server
 ```bash
 journalctl -u tproxy-server -f
 journalctl -u mtproxy -f
-journalctl -u caddy -f
 ```
 
 ### Перезапуск всех сервисов
@@ -117,6 +130,7 @@ systemctl restart tproxy-firewall mtproxy tproxy-server
 ```
 tg-web/
 ├── install.sh              # Интерактивный автоинсталлятор
+├── uninstall.sh            # Полное удаление
 ├── README.md
 └── sites/
     ├── _shared/            # Общий CSS/JS/favicon
@@ -130,7 +144,6 @@ tg-web/
     ├── foxes/              # Белые песцы
     ├── music/              # Музыка
     └── coding/             # Программирование
-```
 
 ## Добавить свой сайт
 
